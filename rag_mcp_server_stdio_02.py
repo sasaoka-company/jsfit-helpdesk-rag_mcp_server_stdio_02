@@ -12,16 +12,16 @@ from logger import get_logger
 logger = get_logger(__name__)
 
 # サーバーをインスタンス化し、名前を付けます
-mcp = FastMCP(name="security-stdio-02")
+mcp = FastMCP(name="snowfall-stdio")
 
-logger.info("FastMCPサーバーオブジェクトが作成されました。")
+logger.info("FastMCPサーバーオブジェクト（標準入出力）が作成されました。")
 
 
 @mcp.tool(
     name=TOOL_NAME,
     description=TOOL_DESCRIPTION,
 )
-def search_security(prompt: str) -> str:
+def search_snowfall(prompt: str) -> str:
     logger.info(f"[1] 検索クエリ: {prompt}")
 
     results: list[str] = rag_core.search(prompt)
