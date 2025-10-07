@@ -1,6 +1,10 @@
 from fastmcp import FastMCP
 import rag_core
 import asyncio  # 後でクライアント用に必要になります
+from config import (
+    TOOL_NAME,
+    TOOL_DESCRIPTION,
+)
 
 from logger import get_logger
 
@@ -8,14 +12,14 @@ from logger import get_logger
 logger = get_logger(__name__)
 
 # サーバーをインスタンス化し、名前を付けます
-mcp = FastMCP(name="security-stdio")
+mcp = FastMCP(name="security-stdio-02")
 
 logger.info("FastMCPサーバーオブジェクトが作成されました。")
 
 
 @mcp.tool(
-    name="search_security",
-    description="情報セキュリティ関連規定.pdfドキュメントから質問に関連する情報を検索します。",
+    name=TOOL_NAME,
+    description=TOOL_DESCRIPTION,
 )
 def search_security(prompt: str) -> str:
     logger.info(f"[1] 検索クエリ: {prompt}")

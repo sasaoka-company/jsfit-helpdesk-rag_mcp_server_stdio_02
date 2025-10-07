@@ -62,7 +62,7 @@
 
 ```powershell
 # プロジェクトルートへ移動
-cd D:\vscode_projects\sample_rag_mcp_server_stdio
+D:\github_projects\jsfit-helpdesk-rag_mcp_server_stdio_02
 
 # uvを使用して依存関係をインストール
 uv sync
@@ -77,20 +77,4 @@ uv sync
 ```powershell
 # uvを使用してテストを実行
 uv run pytest tests/ -v
-```
-
-## ファイル構成
-
-```
-sample_rag_mcp_server_stdio/
-├── rag_mcp_server_stdio.py   # メインサーバーファイル
-├── rag_core.py               # RAG検索ロジック
-├── logger.py                 # ログ設定
-├── pyproject.toml            # プロジェクト設定・依存関係
-├── uv.lock                   # 依存関係ロックファイル
-├── docs/                     # ドキュメント格納
-│   └── 情報セキュリティ関連規定.pdf
-├── faiss_db/                 # FAISS検索インデックス
-└── tests/                    # テストファイル
-    └── test_rag_core.py
 ```
