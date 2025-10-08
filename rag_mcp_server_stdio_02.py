@@ -12,7 +12,7 @@ from logger import get_logger
 logger = get_logger(__name__)
 
 # サーバーをインスタンス化し、名前を付けます
-mcp = FastMCP(name="snowfall-stdio")
+mcp = FastMCP(name="mcp-server-stdio-02")
 
 logger.info("FastMCPサーバーオブジェクト（標準入出力）が作成されました。")
 

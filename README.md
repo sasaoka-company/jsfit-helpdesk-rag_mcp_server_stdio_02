@@ -1,80 +1,68 @@
-# Sample RAG MCP Server (stdio)
-
-**PDF/DOCX ドキュメントを検索する RAG 機能を提供する MCP サーバー（標準入出力方式）**
+**RAG 機能を提供する MCP サーバー（標準入出力方式）その２**
 
 このプロジェクトは、PDF/DOCX ドキュメントから関連情報を検索し、RAG（Retrieval-Augmented Generation）機能を提供する MCP サーバーです。
 標準入出力を通じて MCP クライアントとの通信を行います。
 
-## 機能
+# 1. 機能
 
-- **search_security**: 情報セキュリティ関連規定.pdf ドキュメントから質問に関連する情報を検索するツール
 - **標準入出力方式**: MCP クライアントが直接プロセスを起動してアクセス
-- **FAISS 検索**: 高速な類似性検索による関連文書の取得
+- **ベクトル DB 検索**: 高速な類似性検索による関連文書の取得
 
-## MCP クライアントからの接続
+# 2. 前提条件
 
-### 1. MCP クライアントからの利用
+- Python 3.12 以上
+- [uv](https://docs.astral.sh/uv/) (Python パッケージマネージャー)
+- モデル実行環境：Ollama
+- Embedding モデル：`nomic-embed-text:latest`
+- 仮想環境（`.venv`）が作成されていること
 
-このサーバーは任意の MCP クライアントから利用できます。
+# 3. MCP クライアントからの接続
 
-**Claude Desktop から利用する場合の設定例：**
+- コマンド: `（プロジェクトルート）\.venv\Scripts\python.exe`
+- 実行スクリプト: `rag_mcp_server_stdio_02.py`
+- トランスポート: `stdio`
+
+## （参考）Claude Desktop から利用する場合の設定例：
 
 `claude_desktop_config.json`に以下のように設定：
 
 ```json
 {
   "mcpServers": {
-    "rag-server-stdio": {
-      "command": "D:\\vscode_projects\\sample_rag_mcp_server_stdio\\.venv\\Scripts\\python.exe",
+    "mcp-server-stdio-02": {
+      "command": "D:\\github_projects\\jsfit-helpdesk-rag_mcp_server_stdio_02\\.venv\\Scripts\\python.exe",
       "args": [
-        "D:\\vscode_projects\\sample_rag_mcp_server_stdio\\rag_mcp_server_stdio.py"
+        "D:\\github_projects\\jsfit-helpdesk-rag_mcp_server_stdio_02\\rag_mcp_server_stdio_02.py"
       ]
     }
   }
 }
 ```
 
-**その他の MCP クライアントから利用する場合：**
+# 4. 開発環境セットアップ
 
-- プロセス起動: 仮想環境の Python インタープリターで `rag_mcp_server_stdio.py` を実行
-- コマンド: `D:\vscode_projects\sample_rag_mcp_server_stdio\.venv\Scripts\python.exe`
-- 実行スクリプト: `rag_mcp_server_stdio.py`
-- トランスポート: `stdio`
-- 利用可能ツール: `search_security`
+## 4-1. Git 設定
 
-### 2. 利用方法
-
-- **標準入出力方式**: MCP クライアントがサーバープロセスを起動し、stdin/stdout で通信
-- **利用可能ツール**: `search_security`（情報セキュリティ関連規定.pdf の検索）
-- **注意**: 相対パスは MCP クライアント側からの相対パスとして解決されます
-
-## 開発セットアップ
-
-### 前提条件
-
-- Python 3.11 以上
-- [uv](https://docs.astral.sh/uv/) (Python パッケージマネージャー)
-- Ollama（`nomic-embed-text:latest`モデル）
-
-### セットアップ手順
-
-**依存関係のインストール**
+以下コマンドにより、チェックアウト時、コミット時に改行コードを変更しないようにします。（`.gitattributes` のままになります）
 
 ```powershell
-# プロジェクトルートへ移動
-D:\github_projects\jsfit-helpdesk-rag_mcp_server_stdio_02
+git config --global core.autocrlf false
+```
 
-# uvを使用して依存関係をインストール
+## 4-2. 依存関係のインストール
+
+以下コマンドにより、`pyproject.toml`で定義されているライブラリをインストールします。
+
+```powershell
 uv sync
 ```
 
-## Ollama 設定
+# 5. MCP サーバ起動
 
-使用モデル: `nomic-embed-text:latest`
+明示的な起動は不要です。MCP クライアントから接続されることで起動します。
 
-## テスト実行
+# 6. テスト実行
 
 ```powershell
-# uvを使用してテストを実行
 uv run pytest tests/ -v
 ```

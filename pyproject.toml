@@ -1,5 +1,5 @@
 [project]
-name = "sample_rag_mcp_server_stdio"
+name = "mcp-server-stdio-02"
 version = "0.2.0"
 description = "RAG MCP Server with Ollama embedding support"
 readme = "README.md"
