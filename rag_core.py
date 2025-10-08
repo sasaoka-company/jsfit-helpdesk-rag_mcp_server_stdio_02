@@ -67,9 +67,6 @@ else:
     vectorstore = FAISS.from_documents(docs, embeddings)
     vectorstore.save_local(faiss_path)
 
-# top_k を固定
-TOP_K = DEFAULT_TOP_K
-
 
 # 検索+回答関数
 def search(prompt: str) -> list[str]:
@@ -79,7 +76,7 @@ def search(prompt: str) -> list[str]:
     logger.info(f"① 検索クエリ: {prompt}")
 
     # FAISS に直接問い合わせ
-    docs = vectorstore.similarity_search(prompt, k=TOP_K)
+    docs = vectorstore.similarity_search(prompt, k=DEFAULT_TOP_K)
     logger.info(f"② 取得ドキュメント: {docs}")
 
     # 検索結果をテキストとして抽出
