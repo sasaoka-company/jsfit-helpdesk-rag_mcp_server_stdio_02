@@ -6,8 +6,13 @@ ROOT = os.path.dirname(os.path.dirname(__file__))
 if ROOT not in sys.path:
     sys.path.insert(0, ROOT)
 
-from rag_core import search
-from config import DEFAULT_TOP_K
+# Add src directory to path
+SRC_DIR = os.path.join(ROOT, "src")
+if SRC_DIR not in sys.path:
+    sys.path.insert(0, SRC_DIR)
+
+from src.rag_core import search
+from src.config import DEFAULT_TOP_K
 
 
 def test_search_returns_list_and_max_top_k():

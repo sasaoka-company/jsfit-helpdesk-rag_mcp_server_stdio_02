@@ -1,7 +1,6 @@
 from fastmcp import FastMCP
-import rag_core
-import asyncio  # 後でクライアント用に必要になります
-from config import (
+from src.rag_core import search
+from src.config import (
     TOOL_NAME,
     TOOL_DESCRIPTION,
 )
@@ -24,7 +23,7 @@ logger.info("FastMCPサーバーオブジェクト（標準入出力）が作成
 def search_snowfall(prompt: str) -> str:
     logger.info(f"[1] 検索クエリ: {prompt}")
 
-    results: list[str] = rag_core.search(prompt)
+    results: list[str] = search(prompt)
 
     logger.info(f"[2] 検索結果: {results}")
 
