@@ -13,8 +13,8 @@ ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # ========================================
 # AI/ML モデル設定
 # ========================================
-EMBEDDING_MODEL = "nomic-embed-text:latest"  # Ollama Embedding モデル
-# EMBEDDING_MODEL = "text-embedding-3-small"  # OpenAI Embedding モデル
+# EMBEDDING_MODEL = "nomic-embed-text:latest"  # Ollama Embedding モデル
+EMBEDDING_MODEL = "text-embedding-3-small"  # OpenAI Embedding モデル
 
 
 # ========================================
@@ -41,7 +41,7 @@ DEFAULT_TOP_K = 3
 # MCPツール設定
 # ========================================
 # 就業規則検索ツールの名前
-TOOL_NAME = "search_snowfall"
+TOOL_NAME = "search_xyz_manual"
 
 # 情報セキュリティ関連規定検索ツールの説明文
-TOOL_DESCRIPTION = "新潟市の降雪量.docxドキュメントから質問に関連する情報を検索します。"
+TOOL_DESCRIPTION = "XYZシステムのドキュメントを調査する関数。エラーコードや固有名詞が質問に含まれる場合は、この関数を使ってキーワード検索を行う。"

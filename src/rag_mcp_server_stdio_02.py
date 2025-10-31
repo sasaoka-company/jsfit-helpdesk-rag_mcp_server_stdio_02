@@ -29,7 +29,8 @@ logger.info("FastMCPサーバーオブジェクト（標準入出力）が作成
     name=TOOL_NAME,
     description=TOOL_DESCRIPTION,
 )
-def search_snowfall(prompt: str) -> str:
+# def search_snowfall(prompt: str) -> str:
+def search_xyz_manual(prompt: str) -> str:
     logger.info(f"[1] 検索クエリ: {prompt}")
 
     results: list[str] = search(prompt)
